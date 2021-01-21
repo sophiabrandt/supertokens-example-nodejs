@@ -1,0 +1,52 @@
+version: '2.4'
+
+services:
+  supertokens:
+    image: supertokens/supertokens-postgresql
+    ports:
+      - 3567:3567
+    environment:
+      - POSTGRESQL_USER=postgres
+      - POSTGRESQL_PASSWORD=postgres
+      - POSTGRESQL_HOST=db
+      - POSTGRESQL_PORT=5679
+      - POSTGRESQL_DATABASE_NAME=users
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13-alpine
+    command: -p 5679
+    ports:
+      - 5679:5679
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=users
+    volumes:
+      - db-data:/var/lib/postgresql/data:delegated
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      start_period: 10s
+      timeout: 4s
+      retries: 3
+
+  node:
+    build:
+      context: .
+      args:
+        - NODE_ENV=development
+    ports:
+      - 7000:7000
+    volumes:
+      - .:/opt/node_app/app:delegated
+      - ./package.json:/opt/node_app/package.json
+      - ./pnpm-lock.yaml:/opt/node_app/pnpm-lock.yaml
+      - not-used:/opt/node_app/app/node_modules
+    depends_on:
+      - supertokens
+
+volumes:
+  db-data:
+  not-used:
