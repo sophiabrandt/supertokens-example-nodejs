@@ -35,7 +35,7 @@ supertokens.init({
     connectionURI: supertokensConfig.connection_uri,
   },
   appInfo: {
-    appName: "Bookclub User Service",
+    appName: "Supertokens Demo",
     apiDomain: supertokensConfig.api_domain,
     websiteDomain: supertokensConfig.website_domain,
   },

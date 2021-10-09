@@ -59,8 +59,6 @@
 This is an example authentication backend using the **[Supertokens.io][supertokens]** Node.js SDK **with Docker**.  
 The code is basically a TypeScript port of the [official Supertokens.io Quickstart][quickstart], but with a self-hosted Postgres database. Check the [`docker-compose.yml`](docker-compose.yml) if you're interested.
 
-Please see the [Supertokens demo](https://github.com/supertokens/supertokens-demo-react) for more details.
-
 The project is only used for development and needs to be adjusted for production. For Docker, see:
 
 * [BretFisher/node-docker-good-defaults][dockerdefaults]
@@ -83,7 +81,7 @@ To get a local copy up and running follow these steps.
 
 You'll need:
 
-- Docker, docker-compose
+- Docker, [docker compose CLI v2](https://github.com/docker/compose/tree/v2)
 - [GNU make](https://www.gnu.org/software/make/)
 
 ### Installation
@@ -128,7 +126,7 @@ Example `json` for logging in:
 }
 ```
 
-The Node.js server implements the [EmailPassword recipe](https://github.com/supertokens/frontend-driver-interface/blob/master/v1.5.0.md#emailpassword-recipe) and [Session recipe](https://github.com/supertokens/frontend-driver-interface/blob/master/v1.5.0.md#refresh-session) from Supertokens.
+The Node.js server implements the [EmailPassword recipe](https://github.com/supertokens/frontend-driver-interface/) and [Session recipe](https://github.com/supertokens/frontend-driver-interface/) from Supertokens.
 
 <!-- ROADMAP -->
 
